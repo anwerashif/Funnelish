@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!isNaN(gapValue)) {
               processedGaps[className] = true;
               styleRules += `.${className} { gap: ${gapValue}px; }\n`;
+
+              // Add the mobile-specific gap style
+              styleRules += `@media (max-width: 768px) { .${className} { gap: 15px; } }\n`;
             }
           }
         });
