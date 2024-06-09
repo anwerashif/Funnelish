@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
   var styleElement = document.createElement('style');
   document.head.appendChild(styleElement);
 
-  // Function to generate dynamic CSS rules for flex gap
+  // Function to generate dynamic CSS rules for flex gap and responsive reverse
   function generateGapStyles() {
     var styleRules = '';
     var processedGaps = {};
-    var gapElements = document.querySelectorAll('[class*="flex_gap_"]');
+    var gapElements = document.querySelectorAll('[class*="flex_gap_"], [class*="responsive_reverse"]');
 
     gapElements.forEach(function (el) {
       var classes = el.className.split(' ');
@@ -24,6 +24,10 @@ document.addEventListener('DOMContentLoaded', function () {
             // Add the mobile-specific gap style
             styleRules += `@media (max-width: 768px) { .${className} { gap: 10px; } }\n`;
           }
+        }
+        // Handle responsive_reverse class within media query and add !important
+        if (className === 'responsive_reverse') {
+          styleRules += `@media (max-width: 768px) { .responsive_reverse { flex-direction: column-reverse !important; } }\n`;
         }
       });
     });
