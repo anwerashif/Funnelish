@@ -21,8 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
             processedGaps[className] = true;
             styleRules += `.${className} { gap: ${gapValue}px; }\n`;
 
-            // Add the mobile-specific gap style
-            styleRules += `@media (max-width: 768px) { .${className} { gap: 15px; } }\n`;
+            // Add the mobile-specific gap style only if gapValue > 15
+            if (gapValue > 15) {
+              styleRules += `@media (max-width: 768px) { .${className} { gap: 15px; } }\n`;
+            }
           }
         }
         // Handle responsive_reverse class within media query and add !important
